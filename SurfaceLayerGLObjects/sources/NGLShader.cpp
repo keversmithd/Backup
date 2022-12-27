@@ -1,5 +1,25 @@
 #include "NGLShader.h"
 
+char* NGLParseShader(const char* path)
+{
+	FILE* ParseFile;
+	fopen_s(&ParseFile, path, "rb");
+	fpos_t extractionByteTotal;
+	if (ParseFile != NULL)
+	{
+		fseek(ParseFile, 0, SEEK_END);
+		fgetpos(ParseFile, &extractionByteTotal);
+		fseek(ParseFile, 0, SEEK_SET);
+		char* ParseBuffer = (char*)malloc(static_cast<size_t>(extractionByteTotal + 1));
+		if (ParseBuffer != nullptr)
+		{
+			fread(ParseBuffer, extractionByteTotal, 1, ParseFile);
+			ParseBuffer[extractionByteTotal] = '\0';
+		}
+		return ParseBuffer;
+	}
+	return nullptr;
+}
 NGLShader::NGLShader()
 {
 	m_shader = 0;
@@ -15,10 +35,12 @@ int NGLShader::CreateShader(GLenum type)
 		printf("Shader object already created, delete to regenerate.\n");
 		return 0;
 	}
-	glCreateShader(type);
+	m_shader = glCreateShader(type);
+	
 	GetError
 		if (Code) { return 0; }
 	m_shadertype = type;
+	created = true;
 	return 1;
 }
 int NGLShader::ShaderSource(GLsizei count, const GLchar** string, const GLint* length)

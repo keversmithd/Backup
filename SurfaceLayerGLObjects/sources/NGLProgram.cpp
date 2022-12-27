@@ -19,7 +19,6 @@ int NGLProgram::CreateProgram()
 	created = true;
 	return 1;
 }
-
 int NGLProgram::DeleteProgram()
 {
 	if (created)
@@ -97,7 +96,7 @@ int NGLProgram::GetProgramResourceiv(GLenum programInterface, GLuint index, GLsi
 {
 	if (created)
 	{
-		glGetProgramResourceIndex(m_program, programInterface, index, propCount, props, bufSize, length, params);
+		glGetProgramResourceiv(m_program, programInterface, index, propCount, props, bufSize,  length, params);
 		GetError
 			if (Code) { return 0; }
 		return 1;
@@ -153,7 +152,424 @@ int NGLProgram::GetProgramStageiv(GLenum pname, GLint* params)
 	printf("Program object doesn't exist, generate in order to edit.\n");
 	return 0;
 }
-int NGLProgram::IsProgram()
+int NGLProgram::GetActiveAttrib(GLuint index, GLsizei bufSize, GLsizei* length, GLint* size, GLenum* type, GLchar* name)
+{
+	if (created)
+	{
+		glGetActiveAttrib(m_program, index, bufSize, length, size, type, name);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetActiveAtomicCounterBufferiv(GLuint bufferIndex, GLenum pname, GLint* params)
+{
+	if (created)
+	{
+		glGetActiveAtomicCounterBufferiv(m_program, bufferIndex, pname, params);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetActiveSubroutineName(GLenum shadertype, GLuint index, GLsizei bufsize, GLsizei* length, GLchar* name)
+{
+	if (created)
+	{
+		glGetActiveSubroutineName(m_program, shadertype, index, bufsize, length, name);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetActiveSubroutineUniformName(GLenum shadertype, GLuint index, GLsizei bufsize, GLsizei* length, GLchar* name)
+{
+	if (created)
+	{
+		glGetActiveSubroutineUniformName(m_program, shadertype,
+			index,
+			bufsize,
+			length,
+			name
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetActiveUniform(GLuint index, GLsizei bufSize, GLsizei* length, GLint* size, GLenum* type, GLchar* name)
+{
+	if (created)
+	{
+		glGetActiveUniform(m_program, index,
+			bufSize,
+			length,
+			size,
+			type,
+			name
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetActiveUniformBlockiv(GLuint uniformBlockIndex, GLenum pname, GLint* params)
+{
+	if (created)
+	{
+		glGetActiveUniformBlockiv(m_program, uniformBlockIndex,
+			pname,
+			params
+
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetActiveUniformBlockName(GLuint uniformBlockIndex, GLsizei bufSize, GLsizei* length, GLchar* uniformBlockName)
+{
+	if (created)
+	{
+		glGetActiveUniformBlockName(m_program, uniformBlockIndex,
+			bufSize,
+			length,
+			uniformBlockName
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetActiveUniformName(GLuint uniformIndex, GLsizei bufSize, GLsizei* length, GLchar* uniformName)
+{
+	if (created)
+	{
+		glGetActiveUniformName(m_program, uniformIndex,
+			bufSize,
+			length,
+			uniformName
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetActiveUniformsiv(GLsizei uniformCount, const GLuint* uniformIndices, GLenum pname, GLint* params)
+{
+	if (created)
+	{
+		glGetActiveUniformsiv(m_program, uniformCount,
+			uniformIndices,
+			pname,
+			params
+
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetAttachedShaders(GLsizei maxCount, GLsizei* count, GLuint* shaders)
+{
+	if (created)
+	{
+		glGetAttachedShaders(m_program, maxCount,
+			count,
+			shaders
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetAttribLocation(const GLchar* name)
+{
+	if (created)
+	{
+		glGetAttribLocation(m_program, name
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetFragDataIndex(const char* name)
+{
+	if (created)
+	{
+		glGetFragDataIndex(m_program, name
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetFragDataLocation(const char* name)
+{
+	if (created)
+	{
+		glGetFragDataLocation(m_program, name
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetSubroutineIndex(GLenum shadertype, const GLchar* name)
+{
+	if (created)
+	{
+		glGetSubroutineIndex(m_program, shadertype,
+			name
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetSubroutineUniformLocation(GLenum shadertype, const GLchar* name)
+{
+	if (created)
+	{
+		glGetSubroutineUniformLocation(m_program, shadertype,
+			name
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetUniformfv(GLint location, GLfloat* params)
+{
+	if (created)
+	{
+		glGetUniformfv(m_program, location,
+			params
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetUniformiv(GLint location, GLint* params)
+{
+	if (created)
+	{
+		glGetUniformiv(m_program, location,
+			params
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetUniformuiv(GLint location, GLuint* params)
+{
+	if (created)
+	{
+		glGetUniformuiv(m_program, location,
+			params
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetUniformdv(GLint location, GLdouble* params)
+{
+	if (created)
+	{
+		glGetUniformdv(m_program, location,
+			params
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetnUniformfv(GLint location, GLsizei bufSize, GLfloat* params)
+{
+	if (created)
+	{
+		glGetnUniformfv(m_program, location, bufSize,
+			params
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetnUniformiv(GLint location, GLsizei bufSize, GLint* params)
+{
+	if (created)
+	{
+		glGetnUniformiv(m_program, location, bufSize,
+			params
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetnUniformuiv(GLint location, GLsizei bufSize, GLuint* params)
+{
+	if (created)
+	{
+		glGetnUniformuiv(m_program, location, bufSize,
+			params
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetnUniformdv(GLint location, GLsizei bufSize, GLdouble* params)
+{
+	if (created)
+	{
+		glGetnUniformdv(m_program, location, bufSize,
+			params
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetUniformBlockIndex(const GLchar* uniformBlockName)
+{
+	if (created)
+	{
+		glGetUniformBlockIndex(m_program, uniformBlockName);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetUniformIndices(GLsizei uniformCount, const GLchar** uniformNames, GLuint* uniformIndices)
+{
+	if (created)
+	{
+		glGetUniformIndices(m_program, uniformCount,
+			uniformNames,
+			uniformIndices
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetUniformLocation(const GLchar* name)
+{
+	if (created)
+	{
+		glGetUniformLocation(m_program, name
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::GetUniformSubroutine()
+{
+	//fill out later
+	return 0;
+}
+int NGLProgram::BindAttribLocation(GLuint index, const GLchar* name)
+{
+	if (created)
+	{
+		glBindAttribLocation(m_program, index,name
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::BindFragDataLocation(GLuint colorNumber, const char* name)
+{
+	if (created)
+	{
+		glBindAttribLocation(m_program, colorNumber,
+			name
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+int NGLProgram::BindFragDataLocationIndexed(GLuint colorNumber, GLuint index, const char* name)
+{
+	if (created)
+	{
+		glBindFragDataLocationIndexed(m_program, colorNumber,
+			index,
+			name
+		);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program has not been created and cannot be queried.\n");
+	return 0;
+}
+bool NGLProgram::IsProgram()
 {
 	GLboolean isprgm = glIsProgram(m_program);
 	return isprgm;
@@ -622,24 +1038,258 @@ int NGLProgram::ProgramUniformMatrix2fv(GLint location, GLsizei count, GLboolean
 	printf("Program object doesn't exist, generate in order to edit.\n");
 	return 0;
 }
-int NGLProgram::ProgramUniformMatrix2x3dv(){}
-int NGLProgram::ProgramUniformMatrix2x3fv(){}
-int NGLProgram::ProgramUniformMatrix2x4dv(){}
-int NGLProgram::ProgramUniformMatrix2x4fv(){}
-int NGLProgram::ProgramUniformMatrix3dv(){}
-int NGLProgram::ProgramUniformMatrix3fv(){}
-int NGLProgram::ProgramUniformMatrix3x2dv(){}
-int NGLProgram::ProgramUniformMatrix3x2fv(){}
-int NGLProgram::ProgramUniformMatrix3x4dv(){}
-int NGLProgram::ProgramUniformMatrix3x4fv(){}
-int NGLProgram::ProgramUniformMatrix4dv(){}
-int NGLProgram::ProgramUniformMatrix4fv(){}
-int NGLProgram::ProgramUniformMatrix4x2dv(){}
-int NGLProgram::ProgramUniformMatrix4x2fv(){}
-int NGLProgram::ProgramUniformMatrix4x3dv(){}
-int NGLProgram::ProgramUniformMatrix4x3fv(){}
-int NGLProgram::UseProgram(){}
-int NGLProgram::ValidateProgram(){}
-int NGLProgram::CreateBinary(){}
-int NGLProgram::ActiveShaderProgram() {}
-NGLProgram::~NGLProgram(){}
+int NGLProgram::ProgramUniformMatrix2x3dv(GLint location, GLsizei count, GLboolean transpose, GLdouble* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix2x3dv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ProgramUniformMatrix2x3fv(GLint location, GLsizei count, GLboolean transpose, GLfloat* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix2x3fv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ProgramUniformMatrix2x4dv(GLint location, GLsizei count, GLboolean transpose, GLdouble* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix2x4dv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ProgramUniformMatrix2x4fv(GLint location, GLsizei count, GLboolean transpose, GLfloat* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix2x4fv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ProgramUniformMatrix3dv(GLint location, GLsizei count, GLboolean transpose, GLdouble* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix3dv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+	
+}
+int NGLProgram::ProgramUniformMatrix3fv(GLint location, GLsizei count, GLboolean transpose, GLfloat* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix3fv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ProgramUniformMatrix3x2dv(GLint location, GLsizei count, GLboolean transpose, GLdouble* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix3x2dv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ProgramUniformMatrix3x2fv(GLint location, GLsizei count, GLboolean transpose, GLfloat* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix3x2fv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ProgramUniformMatrix3x4dv(GLint location, GLsizei count, GLboolean transpose, GLdouble* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix3x4dv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ProgramUniformMatrix3x4fv(GLint location, GLsizei count, GLboolean transpose, GLfloat* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix3x4fv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ProgramUniformMatrix4dv(GLint location, GLsizei count, GLboolean transpose, GLdouble* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix4dv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ProgramUniformMatrix4fv(GLint location, GLsizei count, GLboolean transpose, GLfloat* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix4fv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ProgramUniformMatrix4x2dv(GLint location, GLsizei count, GLboolean transpose, GLdouble* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix4x2dv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ProgramUniformMatrix4x2fv(GLint location, GLsizei count, GLboolean transpose, GLfloat* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix4x2fv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ProgramUniformMatrix4x3dv(GLint location, GLsizei count, GLboolean transpose, GLdouble* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix4x3dv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ProgramUniformMatrix4x3fv(GLint location, GLsizei count, GLboolean transpose, GLfloat* value)
+{
+	if (created)
+	{
+		glProgramUniformMatrix4x3fv(m_program, location, count, transpose, value);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::UseProgram()
+{
+	if (created)
+	{
+		glUseProgram(m_program);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+}
+int NGLProgram::ValidateProgram()
+{
+	glValidateProgram(m_program);
+	GetError
+		if (Code) { return 0; }
+	return 1;
+
+}
+int NGLProgram::ActiveShaderProgram(GLuint pipeline)
+{
+	if (created)
+	{
+		glActiveShaderProgram(pipeline, m_program);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	printf("Program object doesn't exist, generate in order to edit.\n");
+	return 0;
+
+
+}
+int NGLProgram::GetTransformFeedbackVarying(GLuint index, GLsizei bufSize, GLsizei* length, GLsizei* size, GLenum* type, char* name)
+{
+	if (created)
+	{
+		glGetTransformFeedbackVarying(m_program, index, bufSize, length, size, type, name);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	NGLStateError("Program not valid, generate to edit.\n");
+	return 0;
+}
+int NGLProgram::TransformFeedbackVaryings(GLsizei count, const char** varyings, GLenum bufferMode)
+{
+	if (created)
+	{
+		glTransformFeedbackVaryings(m_program, count, varyings, bufferMode);
+		GetError
+			if (Code) { return 0; }
+		return 1;
+	}
+	NGLStateError("Program not valid, generate to edit.\n");
+	return 0;
+}
+NGLProgram::~NGLProgram()
+{
+	DeleteProgram();
+}

@@ -50,6 +50,9 @@ int NGLSync::ClientWaitSync(GLbitfield flags, GLuint64 timeout)
 int NGLSync::TextureBarrier()
 {
 	glTextureBarrier();
+	GetError
+		if (Code) { return 0; }
+	return 1;
 }
 int NGLSync::GetSynciv(GLenum pname, GLsizei bufSize, GLsizei* length, GLint* values)
 {

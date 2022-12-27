@@ -76,7 +76,7 @@ int NGLSampler::SamplerParameterf(GLenum pname, GLfloat param)
 {
 	if (generated)
 	{
-		glGetSamplerParameterIuiv(m_sampler, pname, params);
+		glSamplerParameterf(m_sampler, pname, param);
 		GetError
 			if (Code) { return 0; }
 		return 1;
@@ -93,18 +93,6 @@ int NGLSampler::SamplerParameteri(GLenum pname, GLint param)
 		return 1;
 	}
 	printf("Object not generated yet and cannot be used.\n");
-}
-int NGLSampler::SamplerParameterf(GLenum pname, GLfloat param)
-{
-	if (generated)
-	{
-		glSamplerParameteri(m_sampler, pname, param);
-		GetError
-			if (Code) { return 0; }
-		return 1;
-	}
-	printf("Object not generated yet and cannot be used.\n");
-	
 }
 int NGLSampler::SamplerParameterfv(GLenum pname, const GLfloat* params)
 {
