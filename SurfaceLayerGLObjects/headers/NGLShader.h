@@ -2,6 +2,8 @@
 #define NGLSHADER
 #include "NGLDebug.h"
 
+char* NGLParseShader(const char* path);
+
 struct NGLShader
 {
 private:
